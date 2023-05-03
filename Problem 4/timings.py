@@ -9,10 +9,11 @@ import timeit
 
 attempt_1_code = """
 def is_palindrome(num):
-    for i in range(int(len(str(num))/2) + 1):
-        if str(num)[i] != str(num)[-(i+1)]:
-            return False
-    return True
+    a = str(num)
+    if a == a[::-1]:
+        return True
+    else:
+        return False
 
 palindromes = [0]
 
@@ -31,10 +32,11 @@ print(max(palindromes))
 
 attempt_2_code = """
 def is_palindrome(num):
-    for i in range(int(len(str(num))/2) + 1):
-        if str(num)[i] != str(num)[-(i+1)]:
-            return False
-    return True
+    a = str(num)
+    if a == a[::-1]:
+        return True
+    else:
+        return False
 
 palindromes = [0]
 
