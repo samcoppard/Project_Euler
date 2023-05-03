@@ -10,10 +10,8 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 #Create a function to check if a number is a palindrome, by checking that each digit matches its opposite counterpart digit.
 #If a digit doesn't match, we can stop checking straight away rather than wasting time checking the other digits.
 def is_palindrome(num):
-    for i in range(int(len(str(num))/2) + 1):
-        if str(num)[i] != str(num)[-(i+1)]:
-            return False
-    return True
+    a = str(num)
+    return a == a[::-1]
 
 
 #Create a list to store the palindromes we find (including the number 0 so that the max function that comes later always works)
