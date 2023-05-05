@@ -20,4 +20,4 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
 solution = 2*2*2*2*3*3*5*7*11*13*17*19
 
-print(solution)
+print(solution)Ÿ
