@@ -23,6 +23,8 @@
 
 Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?"""
 
+#Even though this is slower than my 2nd attempt, it's a lot faster than all the other solutions I've seen! Splitting wherever there's a zero seems to be the big difference
+
 #Store the products from multiplying each 13-character string in a list
 products = []
 
