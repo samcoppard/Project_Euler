@@ -8,7 +8,7 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 """
 
-#This is a fast but very specific solution. I'll try to generalise to a + b + c = x later
+#This is a fast but very specific solution. Testing shows it's more than 50,000x faster than using the most obviously obvious solution iterating over 1<500<a, 1<500<b
 
 # Rearranging a + b + c = 1000 gives c = 1000 - a - b
 # Inserting that into a**2 + b**2 = c**2, then do a bit of algebra on paper, and we get this formula:
