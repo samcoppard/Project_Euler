@@ -10,6 +10,8 @@ Find the product abc.
 
 #Generalised solution for a + b + c = x (although note that if there are multiple valid Pythagorean triples, this algorithm will find the one with the lowest value of a)
 
+#The only faster solution I've seen doesn't work for all values of x e.g. it doesn't work for 3**2 + 4**2 = 5**2
+
 # Rearranging a + b + c = x gives c = x - a - b
 # Inserting that into a**2 + b**2 = c**2, then do a bit of algebra on paper, and we get this formula:
 # b = (x**2 - (2*x*a)) / (2*x - (2*a))
