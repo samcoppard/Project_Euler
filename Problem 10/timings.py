@@ -1,11 +1,34 @@
+import timeit
+
+slow_code = """
+def sum_of_primes_below(x):
+
+    # Create a list with 2000001 elements. We'll set them all as True to begin with, then change them to False when we know they're not prime
+    nums = [True]*(x+1)
+
+    # 0 and 1 are not prime
+    nums[0] = False
+    nums[1] = False
+
+    # Even numbers are never prime (except for 2, obviously)
+    for i in range(4, x + 1, 2):
+        nums[i] = False
+
+    # Create a variable to store the running total of the primes found
+    primes_sum = 0
+
+    for i in range(x + 1):
+        if nums[i] == True:
+            primes_sum += i
+            for j in range(i**2, x + 1, 2*i):
+                nums[j] = False
+
+    print(primes_sum)
+
+sum_of_primes_below(2000000)
 """
-The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
-Find the sum of all the primes below two million.
-"""
-
-# Use the Sieve of Eratosthenes to find all primes below x, and then sum them
-
+fast_code = """
 def sum_of_primes_below(x):
 
     # Create a list with 2000001 elements. We'll set them all as True to begin with, then change them to False when we know they're not prime
@@ -47,3 +70,14 @@ def sum_of_primes_below(x):
     print(primes_sum)
 
 sum_of_primes_below(2000000)
+"""
+
+slow_code_time = timeit.timeit(slow_code, number=10)/10
+fast_code_time = timeit.timeit(fast_code, number=10)/10
+
+print("The slow code ran in {:.6f}s".format(slow_code_time))
+print("The fast code ran in {:.6f}s".format(fast_code_time))
+
+improvement = slow_code_time / fast_code_time
+
+print("The fast code was {:.2f}x faster".format(improvement))
