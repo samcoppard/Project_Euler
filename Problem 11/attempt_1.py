@@ -44,8 +44,34 @@ def twenty_at_a_time(start, end):
         twenty_at_a_time(start, end)
 
 #Run the function to get the grid
-twenty_at_a_time(0,20)
+twenty_at_a_time(0, 20)
 
-print(grid)
+max_product = 0
 
-print(grid[0][0] * grid[0][1] * grid[0][2] * grid[0][3])
+for row in grid:
+    product = row[0] * row[1] * row[2] * row[3]
+    if product > max_product:
+        max_product = product
+    for i in range(4, 20):
+        if row[i-4] == 0:
+            x = 1
+        else:
+            x = row[i-4]
+        product = (product / x) * row[i]
+        if product > max_product:
+            max_product = product
+
+for i in range(20):
+    product = grid[0][i] * grid[1][i] * grid[2][i] * grid[3][i]
+    if product > max_product:
+        max_product = product
+    for j in range(4, 20):
+        if grid[j-4][i] == 0:
+            x = 1
+        else:
+            x = grid[j-4][i]
+        product = (product / x) * grid[j][i]
+        if product > max_product:
+            max_product = product
+
+print(max_product)
