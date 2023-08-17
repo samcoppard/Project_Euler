@@ -56,7 +56,7 @@ def twenty_at_a_time(start, end, grid=[]):
 original_grid = twenty_at_a_time(0, 20)
 
 
-def find_max_row_product(grid, max_product):
+def find_max_row_product(grid, max_product) -> int:
     """Find the highest product of 4 consecutive numbers in any of the rows of a grid"""
     for row in grid:
         # Ignore rows with less than 4 numbers
