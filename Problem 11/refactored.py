@@ -32,35 +32,33 @@ grid = []
 for row in a:
     grid.append([int(i) for i in row.split(" ")])
 
+# Find the largest product
 max_product = 0
 
-for x in range(20):
-    for y in range(20):
-        if y < 17:  # horizontal - need to check all x and y < 17
-            product = (
-                grid[x][y] * grid[x][y + 1] * grid[x][y + 2] * grid[x][y + 3]
+# Use i for each of the lists within the grid, and j for each number within a given list
+for i in range(20):
+    for j in range(20):
+        if j < 17:  # horizontal - need to check all i and j < 17
+            max_product = max(max_product,
+                grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
             )
-            max_product = max(max_product, product)
-        if x < 17:  # vertical - need to check all y and x < 17
-            product = (
-                grid[x][y] * grid[x + 1][y] * grid[x + 2][y] * grid[x + 3][y]
+        if i < 17:  # vertical - need to check all j and i < 17
+            max_product = max(max_product,
+                grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j]
             )
-            max_product = max(max_product, product)
-            if y < 17:  # 1st diagonal - need to check for x < 17 and y < 17
-                product = (
-                    grid[x][y]
-                    * grid[x + 1][y + 1]
-                    * grid[x + 2][y + 2]
-                    * grid[x + 3][y + 3]
-                )
-                max_product = max(max_product, product)
-            if y > 2:  # 2nd diagonal - need to check for x < 17 and y > 2
-                product = (
-                    grid[x][y]
-                    * grid[x + 1][y - 1]
-                    * grid[x + 2][y - 2]
-                    * grid[x + 3][y - 3]
-                )
-                max_product = max(max_product, product)
+        if i < 17 and j < 17:  # 1st diagonal - need to check for i < 17 and j < 17
+            max_product = max(max_product,
+                grid[i][j]
+                * grid[i + 1][j + 1]
+                * grid[i + 2][j + 2]
+                * grid[i + 3][j + 3]
+            )
+        if i < 17 and j > 2:  # 2nd diagonal - need to check for i < 17 and j > 2
+            max_product = max(max_product,
+                grid[i][j]
+                * grid[i + 1][j - 1]
+                * grid[i + 2][j - 2]
+                * grid[i + 3][j - 3]
+            )
 
 print(max_product)
