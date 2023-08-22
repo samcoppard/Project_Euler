@@ -22,7 +22,9 @@ a = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 04 42 16 73 38 25 39 11 24 94 72 18 08 46 29 32 40 62 76 36
 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
-01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48""".split("\n")
+01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48""".split(
+    "\n"
+)
 
 # Create the grid of 20 lists containing 20 numbers each
 grid = []
@@ -33,17 +35,32 @@ for row in a:
 max_product = 0
 
 for x in range(20):
-    for y in range(17):
-        # Horizontal (left to right) first
-        product_horizontal = grid[x][y] * grid[x][y+1] * grid[x][y+2] * grid[x][y+3]
-        # Vertical (top to bottom) next
-        if x < 17:
-            product_vertical = grid[x][y] * grid[x+1][y] * grid[x+2][y] * grid[x+3][y]
-            # Now the first diagonal (starting in the top left)
-            product_diag1 = grid[x][y] * grid[x+1][y-1] * grid[x+2][y-2] * grid[x+3][y-3] # Ignore x>16 or y<3, but y>17 is totally legit
-            # Now the second diagonal
-            if y < 17:
-                product_diag2 = grid[x][y] * grid[x+1][y+1] * grid[x+2][y+2] * grid[x+3][y+3] # Ignore x>16 or y>16
+    for y in range(20):
+        if y < 17:  # horizontal - need to check all x and y < 17
+            product = (
+                grid[x][y] * grid[x][y + 1] * grid[x][y + 2] * grid[x][y + 3]
+            )
+            max_product = max(max_product, product)
+        if x < 17:  # vertical - need to check all y and x < 17
+            product = (
+                grid[x][y] * grid[x + 1][y] * grid[x + 2][y] * grid[x + 3][y]
+            )
+            max_product = max(max_product, product)
+            if y < 17:  # 1st diagonal - need to check for x < 17 and y < 17
+                product = (
+                    grid[x][y]
+                    * grid[x + 1][y + 1]
+                    * grid[x + 2][y + 2]
+                    * grid[x + 3][y + 3]
+                )
+                max_product = max(max_product, product)
+            if y > 2:  # 2nd diagonal - need to check for x < 17 and y > 2
+                product = (
+                    grid[x][y]
+                    * grid[x + 1][y - 1]
+                    * grid[x + 2][y - 2]
+                    * grid[x + 3][y - 3]
+                )
+                max_product = max(max_product, product)
 
-
-# What happens if one of the product elements doesn't exist?
+print(max_product)
