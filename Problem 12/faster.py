@@ -16,8 +16,8 @@ def count_factors(num):
     return divisors
 
 
-n = 1 # We'll look at the nth triangle number
-max_factors = 0 # The most factors for a triangle number observed so far
+n = 1  # We'll look at the nth triangle number
+max_factors = 0  # The most factors for a triangle number observed so far
 
 while max_factors < 500:
     n += 1
